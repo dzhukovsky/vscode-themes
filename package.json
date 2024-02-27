@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.86.0"
   },
+  "repository": "https://github.com/dzhukovsky/vscode-themes.git",
   "categories": [
     "Themes"
   ],
