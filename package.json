@@ -3,7 +3,7 @@
   "displayName": "vscode-themes",
   "publisher": "dzhukovsky",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.86.0"
   },

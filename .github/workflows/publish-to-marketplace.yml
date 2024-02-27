@@ -1,0 +1,38 @@
+name: Publish Theme to Marketplace
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.1
+      with:
+        fetch-depth: 0
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4.0.2
+      with:
+        node-version: '20.x'
+
+    - name: Install vsce
+      run: npm install -g vsce
+
+    - name: Auto-increment version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        npm version patch -m "Automatically increment version to %s"
+        git push --follow-tags
+
+    - name: Package Extension
+      run: vsce package
+
+    - name: Publish to Visual Studio Marketplace
+      run: vsce publish -p ${{ secrets.VS_MARKETPLACE_PAT }}
